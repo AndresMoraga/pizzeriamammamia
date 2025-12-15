@@ -1,4 +1,4 @@
-const CardPiza = ({ name, price, ingredients, img }) => {
+const CardPizza = ({ name, price, ingredients, img }) => {
   return (
     <div className="card shadow-sm" style={{ width: "22rem" }}>
       <img src={img} className="card-img-top" alt={name} />
@@ -6,12 +6,13 @@ const CardPiza = ({ name, price, ingredients, img }) => {
       <div className="card-body text-center">
         <h3 className="card-title">{name}</h3>
 
-        <p className="text-muted">
-          Ingredientes:
-          <br />
-          {ingredients.join(", ")}
-        </p>
+        <p className="fw-semibold mb-1">Ingredientes:</p>
 
+        <ul className="list-unstyled text-muted">
+          {ingredients.map((ingredient, index) => (
+            <li key={index}> {ingredient}</li>
+          ))}
+        </ul>
         <h4 className="fw-bold">${price.toLocaleString()}</h4>
 
               <div className="d-flex justify-content-around mt-3">
@@ -23,4 +24,4 @@ const CardPiza = ({ name, price, ingredients, img }) => {
   );
 };
 
-export default CardPiza;
+export default CardPizza;
