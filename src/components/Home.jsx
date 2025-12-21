@@ -1,8 +1,17 @@
+import { useEffect, useState } from "react";
 import Header from "./Header";
 import CardPizza from "./CardPizza";
-import { pizzas } from "../pizzas"
 
 function Home() {
+  const [pizzas, setPizzas] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:5000/api/pizzas")
+      .then((response) => response.json())
+      .then((data) => setPizzas(data))
+      .catch((error) => console.error(error));
+  }, []);
+
   return (
     <>
       <Header />   
