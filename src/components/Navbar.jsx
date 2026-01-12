@@ -1,45 +1,42 @@
 import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const token = false;
-  const total = 25000;
-
   return (
-    <nav className="navbar navbar-dark bg-dark px-3">
-      <div className="container-fluid d-flex justify-content-between align-items-center">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+      <Link className="navbar-brand" to="/">
+        🍕 Pizzería Mamma Mía
+      </Link>
 
-        <div className="d-flex align-items-center gap-3">
-          <span className="navbar-brand mb-0 h1 text-white">
-            Pizzería Mamma Mia!
-          </span>
+      <div className="collapse navbar-collapse show">
+        <ul className="navbar-nav me-auto mb-2 mb-lg-0 gap-3">
+          <li className="nav-item">
+            <Link className="nav-link" to="/">
+              Home
+            </Link>
+          </li>
 
-          <div className="d-flex gap-2">
-            <Link to="/" className="btn btn-outline-light">🍕 Home</Link>
+          <li className="nav-item">
+            <Link className="nav-link" to="/login">
+              Login
+            </Link>
+          </li>
 
-            {token ? (
-              <>
-                <Link to="/profile" className="btn btn-outline-light">🔓 Profile</Link>
-                <button className="btn btn-outline-light">🔒 Logout</button>
-              </>
-            ) : (
-              <>
-                <Link to="/login" className="btn btn-outline-light">🔐 Login</Link>
-                <Link to="/register" className="btn btn-outline-light">🔐 Register</Link>
-              </>
-            )}
-          </div>
-        </div>
+          <li className="nav-item">
+            <Link className="nav-link" to="/register">
+              Register
+            </Link>
+          </li>
 
-        <button
-          className="btn fw-bold"
-          style={{
-            backgroundColor: "black",
-            border: "2px solid #00bfff",
-            color: "#00bfff"
-          }}
-        >
-          🛒 Total: ${total.toLocaleString("es-CL")}
-        </button>
+          <li className="nav-item">
+            <Link className="nav-link" to="/profile">
+              Profile
+            </Link>
+          </li>
+        </ul>
+
+        <Link to="/cart" className="btn btn-outline-light">
+          🛒 Total: $25.000
+        </Link>
       </div>
     </nav>
   );
