@@ -1,25 +1,23 @@
-const CardPizza = ({ name, price, ingredients, img }) => {
+const CardPizza = ({ name, price, ingredients, img, addToCart }) => {
   return (
-    <div className="card shadow-sm" style={{ width: "22rem" }}>
+    <div className="card" style={{ width: "22rem" }}>
       <img src={img} className="card-img-top" alt={name} />
 
       <div className="card-body text-center">
-        <h3 className="card-title">{name}</h3>
+        <h4>{name}</h4>
 
-        <p className="fw-semibold mb-1">Ingredientes:</p>
-
-        <ul className="list-unstyled text-muted">
-          {ingredients.map((ingredient, index) => (
-            <li key={index}> {ingredient}</li>
+        <ul>
+          {ingredients.map((i, index) => (
+            <li key={index}>{i}</li>
           ))}
         </ul>
-        <h4 className="fw-bold">${price.toLocaleString()}</h4>
 
-              <div className="d-flex justify-content-around mt-3">
-                  <button className="btn btn-outline-dark">Ver más 👀</button>
-                  <button className="btn btn-dark">Añadir 🛒</button>
-              </div>
-          </div>
+        <h5>${price.toLocaleString("es-CL")}</h5>
+
+        <button onClick={addToCart} className="btn btn-dark">
+          Añadir 🛒
+        </button>
+      </div>
     </div>
   );
 };

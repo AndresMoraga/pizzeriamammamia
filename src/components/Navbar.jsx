@@ -1,41 +1,32 @@
 import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { CartContext } from "../context/CartContext";
 
 const Navbar = () => {
+  const { total } = useContext(CartContext);
+
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark px-4">
+    <nav className="navbar navbar-dark bg-dark px-4">
       <Link className="navbar-brand" to="/">
         🍕 Pizzería Mamma Mía
       </Link>
 
-      <div className="collapse navbar-collapse show">
-        <ul className="navbar-nav me-auto mb-2 mb-lg-0 gap-3">
-          <li className="nav-item">
-            <Link className="nav-link" to="/">
-              Home
-            </Link>
-          </li>
+      <div className="d-flex gap-3">
+        <Link className="btn btn-outline-light" to="/">
+          Home
+        </Link>
+        <Link className="btn btn-outline-light" to="/login">
+          Login
+        </Link>
+        <Link className="btn btn-outline-light" to="/register">
+          Register
+        </Link>
+        <Link className="btn btn-outline-light" to="/profile">
+          Profile
+        </Link>
 
-          <li className="nav-item">
-            <Link className="nav-link" to="/login">
-              Login
-            </Link>
-          </li>
-
-          <li className="nav-item">
-            <Link className="nav-link" to="/register">
-              Register
-            </Link>
-          </li>
-
-          <li className="nav-item">
-            <Link className="nav-link" to="/profile">
-              Profile
-            </Link>
-          </li>
-        </ul>
-
-        <Link to="/cart" className="btn btn-outline-light">
-          🛒 Total: $25.000
+        <Link to="/cart" className="btn btn-outline-info">
+          🛒 Total: ${total.toLocaleString("es-CL")}
         </Link>
       </div>
     </nav>
