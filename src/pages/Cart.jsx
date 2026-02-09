@@ -8,6 +8,32 @@ const Cart = () => {
 
   const { token } = useContext(UserContext);
 
+  const handleCheckout = async () => {
+    try {
+      const res = await fetch("http://localhost:5000/api/checkouts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({
+          cart,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        alert("Compra realizada con éxito");
+      } else {
+        alert(data.error || "Error al procesar la compra");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Error de conexión con el servidor");
+    }
+  };
+
   return (
     <div className="container mt-4">
       <h3>Detalles del pedido</h3>
@@ -35,7 +61,11 @@ const Cart = () => {
 
       <h4>Total: ${total.toLocaleString("es-CL")}</h4>
 
-      <button className="btn btn-dark mt-3" disabled={!token}>
+      <button
+        className="btn btn-dark mt-3"
+        disabled={!token}
+        onClick={handleCheckout}
+      >
         Pagar
       </button>
     </div>

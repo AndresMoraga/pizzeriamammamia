@@ -25,11 +25,13 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
 
+        {/* Si ya está logueado, no puede ir a login */}
         <Route
           path="/login"
           element={token ? <Navigate to="/" /> : <Login />}
         />
 
+        {/* Si ya está logueado, no puede ir a register */}
         <Route
           path="/register"
           element={token ? <Navigate to="/" /> : <Register />}
@@ -39,6 +41,7 @@ function App() {
 
         <Route path="/pizza/:id" element={<Pizza />} />
 
+        {/* Ruta protegida */}
         <Route
           path="/profile"
           element={

@@ -1,17 +1,36 @@
-const Profile = () => {
-  return (
-    <div className="container mt-5 text-center">
-      <h2>Perfil de usuario</h2>
+import { useContext, useEffect, useState } from "react";
+import { UserContext } from "../context/UserContext";
+import { useNavigate } from "react-router-dom";
 
-      <p className="mt-3">
-        <strong>Email:</strong> usuario@correo.cl
+export default function Profile() {
+  const { email, logout, getProfile } = useContext(UserContext);
+  const [profile, setProfile] = useState(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const data = await getProfile();
+      setProfile(data);
+    };
+    fetchProfile();
+  }, []);
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  };
+
+  return (
+    <div className="container mt-5">
+      <h2>Perfil</h2>
+
+      <p>
+        <strong>Email:</strong> {email}
       </p>
 
-      <button className="btn btn-outline-danger mt-3">
+      <button className="btn btn-danger" onClick={handleLogout}>
         Cerrar sesión
       </button>
     </div>
   );
-};
-
-export default Profile;
+}
